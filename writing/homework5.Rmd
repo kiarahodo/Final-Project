@@ -54,4 +54,9 @@ ggplot() +
   geom_sf(data = fulton_tracts)
 
 ```
+```{r}
+fulton_homicdes <- st_as_sf(unsolved, coords = c("lon", "lat")) %>% 
+  st_set_crs(4269)
+
+```
 

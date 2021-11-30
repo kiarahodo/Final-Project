@@ -75,5 +75,11 @@ race_homicides <- fulton_homicdes %>%
   dplyr::count(victim_race)
 
 
+library(viridis)
+
+ggplot() + 
+  geom_sf(data = fulton_tracts, color = "lightgray") + 
+  geom_sf(data = race_homicides, aes(color = victim_race)) +
+  scale_color_viridis(name = "Victim's Race", discrete = TRUE) 
 ```
 

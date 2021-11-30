@@ -60,3 +60,15 @@ fulton_homicdes <- st_as_sf(unsolved, coords = c("lon", "lat")) %>%
 
 ```
 
+# Making dots on map 
+```{r}
+
+?fct_lump
+
+ggplot() + 
+  geom_sf(data = ga_counties, color = "lightgray") + 
+  geom_sf(data = fulton_homicdes, aes(color = month(begin_date_time),
+                                  shape = time)) + 
+  scale_color_viridis(name = "Month") 
+```
+

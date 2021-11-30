@@ -49,6 +49,7 @@ fulton_atl
 fulton_tracts <- tracts(state = "GA", county = 121, cb = TRUE)
 
 library(ggplot2)
+
 ggplot() + 
   geom_sf(data = fulton_atl) +
   geom_sf(data = fulton_tracts)
@@ -64,11 +65,15 @@ fulton_homicdes <- st_as_sf(unsolved, coords = c("lon", "lat")) %>%
 ```{r}
 
 ?fct_lump
+?factor
 
-ggplot() + 
-  geom_sf(data = ga_counties, color = "lightgray") + 
-  geom_sf(data = fulton_homicdes, aes(color = month(begin_date_time),
-                                  shape = time)) + 
-  scale_color_viridis(name = "Month") 
+fulton_homicdes %>%
+  count(victim_race)
+
+race_homicides <- fulton_homicdes %>%
+  dplyr::mutate(victim_race = forcats::fct_lump(victim_race, n = 3)) %>%
+  dplyr::count(victim_race)
+
+
 ```
 

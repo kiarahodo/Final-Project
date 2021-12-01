@@ -77,19 +77,25 @@ race_homicides <- fulton_homicdes %>%
 
 library(viridis)
 
-ggplot() + 
+fulton_race_map <- ggplot() + 
   geom_sf(data = fulton_tracts, color = "lightgray") + 
   geom_sf(data = race_homicides, aes(color = victim_race)) +
   scale_color_viridis(name = "Victim's Race", discrete = TRUE) 
+
+fulton_race_map
+
+fulton_case_map <- ggplot() + 
+  geom_sf(data = fulton_tracts, color = "lightgray") + 
+  geom_sf(data = fulton_homicdes, aes(shape = disposition)) +
+  scale_color_viridis(name = "Case Disposition", discrete = TRUE) 
+
+fulton_case_map
 ```
-# Facet of solved and unsolved cases 
+# Faceting Maps 
 
 ```{r}
-?facet_grid
 
-sp <- ggplot(unsolved, aes(x=))
-unsolved %>%
-  facet_grid(unsolved ~ victim_race)
-  
+fulton_race_map + facet_grid(victim_race ~ .) 
 ```
+
 

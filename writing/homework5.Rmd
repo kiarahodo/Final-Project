@@ -30,7 +30,7 @@ library(forcats)
 library(sf)
 
 unsolved <- atl_homicides %>%
-  mutate(unsolved = disposition %in% c("Closed without arrest", "Open/No Arrest"))
+  mutate(unsolved = disposition %in% c("Closed without arrest", "Open/No arrest"))
   
 
 
@@ -81,5 +81,15 @@ ggplot() +
   geom_sf(data = fulton_tracts, color = "lightgray") + 
   geom_sf(data = race_homicides, aes(color = victim_race)) +
   scale_color_viridis(name = "Victim's Race", discrete = TRUE) 
+```
+# Facet of solved and unsolved cases 
+
+```{r}
+?facet_grid
+
+sp <- ggplot(unsolved, aes(x=))
+unsolved %>%
+  facet_grid(unsolved ~ victim_race)
+  
 ```
 

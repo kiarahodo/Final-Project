@@ -96,6 +96,8 @@ fulton_case_map
 ```{r}
 
 fulton_race_map + facet_grid(victim_race ~ .) 
+
+fulton_case_map + facet_grid(disposition ~ .)
 ```
 
 
